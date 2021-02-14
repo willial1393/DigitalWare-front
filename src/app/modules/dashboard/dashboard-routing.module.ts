@@ -1,9 +1,20 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HomeDashboardComponent} from './home-dashboard/home-dashboard.component';
+import {HomeDashboardComponent} from './pages/home-dashboard/home-dashboard.component';
+import {LayoutDashboardComponent} from './layout-dashboard/layout-dashboard.component';
+import {RouteName} from '../../shared/constants/route-name';
 
 const routes: Routes = [
-  {path: '', component: HomeDashboardComponent}
+  {
+    path: RouteName.DASHBOARD.ROOT,
+    redirectTo: RouteName.DASHBOARD.HOME, pathMatch: 'full'
+  },
+  {
+    path: RouteName.DASHBOARD.ROOT, component: LayoutDashboardComponent,
+    children: [
+      {path: RouteName.DASHBOARD.HOME, component: HomeDashboardComponent},
+    ]
+  }
 ];
 
 @NgModule({

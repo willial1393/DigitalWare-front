@@ -3,7 +3,8 @@ import {CommonModule} from '@angular/common';
 
 import {DashboardRoutingModule} from './dashboard-routing.module';
 import {LayoutDashboardComponent} from './layout-dashboard/layout-dashboard.component';
-import {HomeDashboardComponent} from './home-dashboard/home-dashboard.component';
+import {HomeDashboardComponent} from './pages/home-dashboard/home-dashboard.component';
+import {DxContextMenuModule, DxDrawerModule, DxListModule, DxRadioGroupModule, DxToolbarModule} from 'devextreme-angular';
 
 
 @NgModule({
@@ -13,7 +14,12 @@ import {HomeDashboardComponent} from './home-dashboard/home-dashboard.component'
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    DxContextMenuModule,
+    DxRadioGroupModule,
+    DxListModule,
+    DxDrawerModule,
+    DxToolbarModule
   ]
 })
 export class DashboardModule {

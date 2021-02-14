@@ -1,2 +1,22 @@
-<p>layout-dashboard works!</p>
-<router-outlet></router-outlet>
+<dx-toolbar
+  [items]="toolbarContent">
+</dx-toolbar>
+<dx-drawer
+  [openedStateMode]="'shrink'"
+  [position]="'left'"
+  [revealMode]="'expand'"
+  template="template"
+  [(opened)]="isDrawerOpen"
+  [closeOnOutsideClick]="true">
+  <div *dxTemplate="let data of 'template'" style="width: 200px">
+    <dx-list class="panel-list dx-theme-accent-as-background-color"
+             [dataSource]="navigation"
+             [hoverStateEnabled]="false"
+             [activeStateEnabled]="false"
+             [focusStateEnabled]="false">
+    </dx-list>
+  </div>
+  <div id="content" class="dx-theme-background-color">
+    <router-outlet></router-outlet>
+  </div>
+</dx-drawer>
