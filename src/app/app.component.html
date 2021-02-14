@@ -1,1 +1,33 @@
-<router-outlet></router-outlet>
+<dx-toolbar
+  [items]="toolbarContent">
+</dx-toolbar>
+<dx-drawer
+  [openedStateMode]="'shrink'"
+  [position]="'left'"
+  [revealMode]="'expand'"
+  template="template"
+  [(opened)]="isDrawerOpen"
+  [closeOnOutsideClick]="true">
+  <div *dxTemplate="let data of 'template'" style="width: 200px">
+    <dx-list class="panel-list dx-theme-accent-as-background-color"
+             [items]="navigation"
+             [width]="200"
+             selectionMode="single"
+             (onSelectionChanged)="this.isDrawerOpen = false"
+             itemTemplate="links">
+      <div *dxTemplate="let link of 'links'">
+        <a [routerLink]="['/' + link.path]">
+          <div>
+            <div class="dx-list-item-icon-container">
+              <i class="dx-icon dx-list-item-icon dx-icon-{{link.icon}}"></i>
+            </div>
+            <span class="dx-label">{{ link.text }}</span>
+          </div>
+        </a>
+      </div>
+    </dx-list>
+  </div>
+  <div id="content" class="dx-theme-background-color">
+    <router-outlet></router-outlet>
+  </div>
+</dx-drawer>

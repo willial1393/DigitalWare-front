@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {RouteName} from '../../../../shared/constants/route-name';
 
 @Component({
   selector: 'app-home-dashboard',
@@ -6,5 +8,8 @@ import {Component} from '@angular/core';
   styleUrls: ['./home-dashboard.component.css']
 })
 export class HomeDashboardComponent {
+  routeName = RouteName;
 
+  constructor(public router: Router) {
+  }
 }

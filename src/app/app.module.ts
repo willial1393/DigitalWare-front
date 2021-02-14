@@ -5,6 +5,8 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
 import {Page404Component} from './core/pages/page404/page404.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {DxDrawerModule, DxListModule, DxToolbarModule} from 'devextreme-angular';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,11 @@ import {Page404Component} from './core/pages/page404/page404.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    DxToolbarModule,
+    DxDrawerModule,
+    DxListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
