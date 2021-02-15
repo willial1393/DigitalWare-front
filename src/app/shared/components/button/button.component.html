@@ -1,6 +1,18 @@
 <dx-button [stylingMode]="stylingMode"
-           [text]="text"
            [type]="type"
-           [width]="width || 120"
+           [width]="width"
+           [icon]="icon"
+           [disabled]="isLoading"
            (onClick)="click()">
+  <div *dxTemplate="let data of 'content'">
+    <div class="row mx-1">
+      <div class="col-auto p-0 mr-1">
+        <div class="loader" *ngIf="isLoading"></div>
+        <i class="dx-icon dx-icon-{{icon}} mr-1" *ngIf="!isLoading && icon"></i>
+      </div>
+      <div class="col p-0">
+        <span class='dx-button-text'>{{text}}</span>
+      </div>
+    </div>
+  </div>
 </dx-button>

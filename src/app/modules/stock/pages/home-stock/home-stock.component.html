@@ -1,1 +1,34 @@
-<p>home-stock works!</p>
+<app-button text="Ingresar productos" icon="plus" [isLoading]="false"></app-button>
+<br><br>
+<dx-data-grid #grid [dataSource]="dataSource" [remoteOperations]="true" [height]="600"
+              [showBorders]="true" [hoverStateEnabled]="true"
+              (onSelectionChanged)="onSelect(grid.instance.getSelectedRowsData()[0])">
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-header-filter [visible]="true"></dxo-header-filter>
+  <dxo-group-panel [visible]="true"></dxo-group-panel>
+  <dxo-scrolling mode="virtual"></dxo-scrolling>
+  <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+  <dxo-selection mode="single"></dxo-selection>
+
+  <dxi-column dataField="CustomerID" caption="Customer">
+    <dxi-validation-rule type="stringLength" [max]="5"
+                         message="The field Customer must be a string with a maximum length of 5."></dxi-validation-rule>
+    <dxo-lookup [dataSource]="customersData" valueExpr="Value" displayExpr="Text"></dxo-lookup>
+  </dxi-column>
+  <dxi-column dataField="OrderDate" dataType="date">
+    <dxi-validation-rule type="required" message="The OrderDate field is required."></dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="Freight">
+    <dxo-header-filter groupInterval="100"></dxo-header-filter>
+    <dxi-validation-rule type="range" [min]="0" [max]="2000"
+                         message="The field Freight must be between 0 and 2000.">
+    </dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="ShipCountry">
+    <dxi-validation-rule type="stringLength" max="15"
+                         message="The field ShipCountry must be a string with a maximum length of 15."></dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="ShipVia" caption="Shipping Company" dataType="number">
+    <dxo-lookup [dataSource]="shippersData" valueExpr="Value" displayExpr="Text"></dxo-lookup>
+  </dxi-column>
+</dx-data-grid>
