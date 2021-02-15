@@ -1,0 +1,152 @@
+<form (submit)="save($event)">
+  <div class="container">
+    <div class="card">
+      <div class="card-header">Factura de venta</div>
+      <div class="card-body">
+
+        <div class="dx-field">
+          <div class="dx-field-label">Número de documento</div>
+          <div class="dx-field-value">
+            <dx-number-box [(value)]="customerDocument">
+              <dx-validator>
+                <dxi-validation-rule type="required" message="Número de documento requerido"></dxi-validation-rule>
+                <dxi-validation-rule type="range" [min]="100000"
+                                     message="Debe ser mayor a 8 caracteres"></dxi-validation-rule>
+                <dxi-validation-rule type="async" message="Cliente no registrado"
+                                     [validationCallback]="getCustomerByDocument"></dxi-validation-rule>
+              </dx-validator>
+            </dx-number-box>
+          </div>
+        </div>
+
+        <div class="dx-field">
+          <div class="dx-field-label">Nombres</div>
+          <div class="dx-field-value">
+            <dx-text-box [value]="customer?.firstName" [readOnly]="true"></dx-text-box>
+          </div>
+        </div>
+
+        <div class="dx-field">
+          <div class="dx-field-label">Apellidos</div>
+          <div class="dx-field-value">
+            <dx-text-box [value]="customer?.lastName" [readOnly]="true"></dx-text-box>
+          </div>
+        </div>
+
+        <div class="dx-field">
+          <div class="dx-field-label">Total</div>
+          <div class="dx-field-value">
+            <dx-number-box [(value)]="customerInvoice.total" format="$ #,##0.##" [readOnly]="true"></dx-number-box>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <div class="card-header">Productos</div>
+      <div class="card-body">
+        <table class="w-100 mb-2">
+          <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio unitario</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th>Eliminar</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let concept of concepts">
+            <td>{{concept.product.name}}</td>
+            <td>{{concept.unitPrice}}</td>
+            <td>{{concept.quantity}}</td>
+            <td>{{concept.total}}</td>
+            <td>
+              <app-button icon="trash" type="danger" (onClick)="removeProduct(concept.id)"></app-button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <app-button text="Agregar producto" icon="plus" (onClick)="popupVisible = true"></app-button>
+      </div>
+      <div class="card-footer">
+        <app-button [isLoading]="isLoading" [useSubmitBehavior]="true"
+                    text="Crear factura de venta"></app-button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<dx-popup
+  [width]="300"
+  [height]="350"
+  [showTitle]="true"
+  title="Agregar producto"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="popupVisible">
+  <div *dxTemplate="let data of 'content'">
+    <div class="dx-fieldset">
+      <div class="dx-field">
+        <div class="dx-field-label">Producto</div>
+        <div class="dx-field-value">
+          <dx-autocomplete
+            placeholder="Escribe mínimo 3 letras de tu producto"
+            [(value)]="productName"
+            [minSearchLength]="2"
+            [searchTimeout]="500"
+            valueExpr="name"
+            [dataSource]="products"
+            (onValueChanged)="updateProducts($event)">
+          </dx-autocomplete>
+        </div>
+      </div>
+      <div class="dx-field">
+        <div class="dx-field-label">Precio por unidad</div>
+        <div class="dx-field-value">
+          <dx-number-box [(value)]="priceUnit" [readOnly]="true" format="$ #,##0.##">
+          </dx-number-box>
+        </div>
+      </div>
+      <div class="dx-field">
+        <div class="dx-field-label">Unidades</div>
+        <div class="dx-field-value">
+          <dx-number-box [(value)]="units" (onChange)="total = (units || 0)* (priceUnit || 0)">
+          </dx-number-box>
+        </div>
+      </div>
+      <div class="dx-field">
+        <div class="dx-field-label">Total</div>
+        <div class="dx-field-value">
+          <dx-number-box [(value)]="total" [readOnly]="true" format="$ #,##0.##">
+          </dx-number-box>
+        </div>
+      </div>
+    </div>
+    <app-button text="Agregar" icon="plus" (onClick)="addProduct()"></app-button>
+  </div>
+</dx-popup>
+
+<dx-popup
+  [width]="300"
+  [height]="250"
+  [showTitle]="true"
+  title="¿desea eliminar este producto de su lista?"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="popupVisibleDelete">
+  <div *dxTemplate="let data of 'content'">
+    <div class="row">
+      <div class="col text-center">
+        <app-button class="m-auto" text="Eliminar"></app-button>
+      </div>
+      <div class="col text-center">
+        <app-button class="m-auto" text="Cancelar" (onClick)="popupVisibleDelete=false"></app-button>
+      </div>
+    </div>
+  </div>
+</dx-popup>
+

@@ -33,7 +33,6 @@ export class AppComponent implements OnInit {
       {id: 2, text: 'Ventas', icon: 'money', path: RouteName.SALES.HOME_ROOT},
       {id: 3, text: 'Inventario', icon: 'product', path: RouteName.STOCK.HOME_ROOT},
       {id: 4, text: 'Clientes', icon: 'group', path: RouteName.CUSTOMER.HOME_ROOT},
-      {id: 5, text: 'Reports', icon: 'chart', path: RouteName.REPORT.HOME_ROOT}
     ];
   }
 

@@ -15,16 +15,12 @@ class RouteNameCustomer {
   CUSTOMER = 'cliente';
 }
 
-class RouteNameReport {
-  ROOT = 'reportes';
-  HOME = 'inicio';
-  HOME_ROOT = this.ROOT + '/' + this.HOME;
-}
-
 class RouteNameSales {
   ROOT = 'ventas';
   HOME = 'inicio';
   HOME_ROOT = this.ROOT + '/' + this.HOME;
+  FORM = 'factura';
+  VIEW = 'ver-factura';
 }
 
 class RouteNameStock {
@@ -40,7 +36,6 @@ export class RouteName {
   static APP = new RouteNameApp();
   static DASHBOARD = new RouteNameDashboard();
   static CUSTOMER = new RouteNameCustomer();
-  static REPORT = new RouteNameReport();
   static SALES = new RouteNameSales();
   static STOCK = new RouteNameStock();
 }

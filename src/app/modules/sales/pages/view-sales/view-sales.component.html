@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">Factura de venta</div>
+    <div class="card-body">
+
+      <div class="dx-field">
+        <div class="dx-field-label">Número de documento</div>
+        <div class="dx-field-value">
+          <dx-text-box [(value)]="customerInvoice.customer.documentNumber" [readOnly]="true"></dx-text-box>
+        </div>
+      </div>
+
+      <div class="dx-field">
+        <div class="dx-field-label">Nombres</div>
+        <div class="dx-field-value">
+          <dx-text-box [value]="customerInvoice.customer.firstName" [readOnly]="true"></dx-text-box>
+        </div>
+      </div>
+
+      <div class="dx-field">
+        <div class="dx-field-label">Apellidos</div>
+        <div class="dx-field-value">
+          <dx-text-box [value]="customerInvoice.customer.lastName" [readOnly]="true"></dx-text-box>
+        </div>
+      </div>
+
+      <div class="dx-field">
+        <div class="dx-field-label">Total</div>
+        <div class="dx-field-value">
+          <dx-number-box [(value)]="customerInvoice.total" format="$ #,##0.##" [readOnly]="true"></dx-number-box>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">Productos</div>
+    <div class="card-body">
+      <table class="w-100 mb-2">
+        <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio unitario</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let concept of customerInvoice.concepts">
+          <td>{{concept.product.name}}</td>
+          <td>{{concept.unitPrice}}</td>
+          <td>{{concept.quantity}}</td>
+          <td>{{concept.total}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">
+      <app-button (onClick)="goToBack()" icon="arrowleft" text="Volver"></app-button>
+    </div>
+  </div>
+</div>

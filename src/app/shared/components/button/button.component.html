@@ -7,11 +7,11 @@
            (onClick)="click()">
   <div *dxTemplate="let data of 'content'">
     <div class="row mx-1">
-      <div class="col-auto p-0 mr-1">
+      <div class="col-auto p-0 {{text ? 'mr-1': ''}}">
         <div class="loader" *ngIf="isLoading"></div>
         <i class="dx-icon dx-icon-{{icon}} mr-1" *ngIf="!isLoading && icon"></i>
       </div>
-      <div class="col p-0">
+      <div class="col p-0" *ngIf="text">
         <span class='dx-button-text'>{{text}}</span>
       </div>
     </div>

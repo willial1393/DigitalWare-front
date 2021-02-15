@@ -1,7 +1,7 @@
 <div class="container">
   <form (submit)="save($event)">
     <div class="card">
-      <div class="card-header">{{customerId ? 'Editar' : 'Crear'}} producto</div>
+      <div class="card-header">{{customerId ? 'Editar' : 'Crear'}} cliente</div>
       <div class="card-body">
 
         <div class="dx-field">
@@ -59,7 +59,7 @@
       </div>
       <div class="card-footer">
         <app-button [isLoading]="isLoading" [useSubmitBehavior]="true"
-                    text="{{customerId ? 'Guardar cambios' : 'Crear producto'}}"></app-button>
+                    text="{{customerId ? 'Guardar cambios' : 'Crear cliente'}}"></app-button>
       </div>
     </div>
   </form>

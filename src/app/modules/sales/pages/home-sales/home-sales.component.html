@@ -1,1 +1,16 @@
-<p>home-sales works!</p>
+<app-button text="Realizar venta" icon="plus" [isLoading]="false" (onClick)="createInvoice()"></app-button>
+<br><br>
+<dx-data-grid #grid [dataSource]="dataSource" [remoteOperations]="true" [height]="600"
+              [showBorders]="true" [hoverStateEnabled]="true"
+              (onSelectionChanged)="onSelect(grid.instance.getSelectedRowsData()[0])">
+  <dxo-scrolling mode="virtual"></dxo-scrolling>
+  <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+  <dxo-selection mode="single"></dxo-selection>
+
+  <dxi-column dataField="customer.firstName" caption="Nombres"></dxi-column>
+  <dxi-column dataField="customer.lastName" caption="Apellidos"></dxi-column>
+  <dxi-column dataField="customer.documentNumber" caption="Documento"></dxi-column>
+  <dxi-column dataField="total" format="$ #,##0.##" caption="Total"></dxi-column>
+  <dxi-column dataField="created" caption="Creada" dataType="date"
+              format="MMM d, yyyy"></dxi-column>
+</dx-data-grid>

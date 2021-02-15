@@ -26,6 +26,11 @@ export class ProductService {
       .toPromise() as Promise<Product>;
   }
 
+  getByNameContain(name: string): Promise<Product[]> {
+    return this.http.get(this.url + '/nameContain/' + name)
+      .toPromise() as Promise<Product[]>;
+  }
+
   create(product: Product): Promise<Product> {
     return this.http.post(this.url, product, {headers: this.headers})
       .toPromise() as Promise<Product>;

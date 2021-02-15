@@ -35,7 +35,7 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "devextreme",
-              "devextreme-aspnet-data-nojquery  "
+              "devextreme-aspnet-data-nojquery"
             ]
           },
           "configurations": {

@@ -23,4 +23,9 @@ export class StockService {
     return this.http.get(this.url + '/' + id)
       .toPromise() as Promise<Stock>;
   }
+
+  getByProductId(id: number): Promise<Stock> {
+    return this.http.get(this.url + '/product/' + id)
+      .toPromise() as Promise<Stock>;
+  }
 }
