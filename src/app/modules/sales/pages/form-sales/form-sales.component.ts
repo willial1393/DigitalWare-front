@@ -90,8 +90,8 @@ export class FormSalesComponent {
   }
 
   addProduct(): void {
-    if (this.stock.totalQuantity > this.units) {
-      notify('No hay suficientes unidades disponibles', 'error');
+    if (this.stock.totalQuantity - this.units < 5) {
+      notify('No hay suficientes unidades', 'error');
       return;
     }
     if (!this.product) {
