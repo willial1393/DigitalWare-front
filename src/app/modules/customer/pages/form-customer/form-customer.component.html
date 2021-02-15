@@ -1,0 +1,66 @@
+<div class="container">
+  <form (submit)="save($event)">
+    <div class="card">
+      <div class="card-header">{{customerId ? 'Editar' : 'Crear'}} producto</div>
+      <div class="card-body">
+
+        <div class="dx-field">
+          <div class="dx-field-label">Número de documento</div>
+          <div class="dx-field-value">
+            <dx-number-box [(value)]="customer.documentNumber">
+              <dx-validator>
+                <dxi-validation-rule type="required" message="Número de documento requerido"></dxi-validation-rule>
+                <dxi-validation-rule type="range" [min]="100000"
+                                     message="Debe ser mayor a 8 caracteres"></dxi-validation-rule>
+                <dxi-validation-rule type="async" message="Número de documento ya existe"
+                                     [validationCallback]="asyncValidationDocument"></dxi-validation-rule>
+              </dx-validator>
+            </dx-number-box>
+          </div>
+        </div>
+
+        <div class="dx-field">
+          <div class="dx-field-label">Nombres</div>
+          <div class="dx-field-value">
+            <dx-text-box [(value)]="customer.firstName">
+              <dx-validator>
+                <dxi-validation-rule type="required" message="Nombre(s) requerido"></dxi-validation-rule>
+                <dxi-validation-rule type="stringLength" [min]="3"
+                                     message="Debe ser mayor a 3 caracteres"></dxi-validation-rule>
+              </dx-validator>
+            </dx-text-box>
+          </div>
+        </div>
+
+        <div class="dx-field">
+          <div class="dx-field-label">Apellidos</div>
+          <div class="dx-field-value">
+            <dx-text-box [(value)]="customer.lastName">
+              <dx-validator>
+                <dxi-validation-rule type="required" message="Apellido(s) requerido"></dxi-validation-rule>
+                <dxi-validation-rule type="stringLength" [min]="3"
+                                     message="Debe ser mayor a 3 caracteres"></dxi-validation-rule>
+              </dx-validator>
+            </dx-text-box>
+          </div>
+        </div>
+
+        <div class="dx-field">
+          <div class="dx-field-label">Fecha de nacimiento</div>
+          <div class="dx-field-value">
+            <dx-date-box [(value)]="birthday" type="date" [max]="now">
+              <dx-validator>
+                <dxi-validation-rule type="required" message="Fecha de nacimiento requerida"></dxi-validation-rule>
+              </dx-validator>
+            </dx-date-box>
+          </div>
+        </div>
+
+      </div>
+      <div class="card-footer">
+        <app-button [isLoading]="isLoading" [useSubmitBehavior]="true"
+                    text="{{customerId ? 'Guardar cambios' : 'Crear producto'}}"></app-button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -26,10 +26,6 @@ const routes: Routes = [
     loadChildren: () => import('./modules/customer/customer.module').then(m => m.CustomerModule)
   },
   {
-    path: RouteName.REPORT.ROOT,
-    loadChildren: () => import('./modules/report/report.module').then(m => m.ReportModule)
-  },
-  {
     path: '**',
     redirectTo: RouteName.APP.PAGE404, pathMatch: 'full'
   }

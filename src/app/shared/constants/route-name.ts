@@ -12,6 +12,7 @@ class RouteNameCustomer {
   ROOT = 'clientes';
   HOME = 'inicio';
   HOME_ROOT = this.ROOT + '/' + this.HOME;
+  CUSTOMER = 'cliente';
 }
 
 class RouteNameReport {

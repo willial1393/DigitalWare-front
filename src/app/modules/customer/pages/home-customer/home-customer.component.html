@@ -1,1 +1,15 @@
-<p>home-customer works!</p>
+<app-button text="Registrar cliente" icon="plus" [isLoading]="false" (onClick)="createCustomer()"></app-button>
+<br><br>
+<dx-data-grid #grid [dataSource]="dataSource" [remoteOperations]="true" [height]="600"
+              [showBorders]="true" [hoverStateEnabled]="true"
+              (onSelectionChanged)="onSelect(grid.instance.getSelectedRowsData()[0])">
+  <dxo-scrolling mode="virtual"></dxo-scrolling>
+  <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+  <dxo-selection mode="single"></dxo-selection>
+
+  <dxi-column dataField="firstName" caption="Nombres"></dxi-column>
+  <dxi-column dataField="lastName" caption="Apellidos"></dxi-column>
+  <dxi-column dataField="birthday" caption="Fecha de cumpleaños" dataType="date"
+              format="MMM d, yyyy"></dxi-column>
+  <dxi-column dataField="documentNumber" caption="Número de documento"></dxi-column>
+</dx-data-grid>
