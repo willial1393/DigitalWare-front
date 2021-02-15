@@ -1,0 +1,39 @@
+<div class="container">
+  <form (submit)="saveUnits($event)">
+    <div class="card">
+      <div class="card-header">Agregar unidades al producto</div>
+      <div class="card-body">
+        <div class="dx-fieldset">
+          <div class="dx-field">
+            <div class="dx-field-label">Cantidad</div>
+            <div class="dx-field-value">
+              <dx-number-box [(value)]="units">
+                <dx-validator>
+                  <dxi-validation-rule type="required" message="Cantidad es requerido"></dxi-validation-rule>
+                  <dxi-validation-rule type="range" [min]="1"
+                                       message="Debe ser mayor a 1 unidad"></dxi-validation-rule>
+                </dx-validator>
+              </dx-number-box>
+            </div>
+          </div>
+          <div class="dx-field">
+            <div class="dx-field-label">Precio por unidad</div>
+            <div class="dx-field-value">
+              <dx-number-box format="$ #,##0" [(value)]="unitPrice">
+                <dx-validator>
+                  <dxi-validation-rule type="required" message="Cantidad es requerido"></dxi-validation-rule>
+                  <dxi-validation-rule type="range" [min]="1"
+                                       message="Debe ser mayor a 1 unidad"></dxi-validation-rule>
+                </dx-validator>
+              </dx-number-box>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <app-button [isLoading]="isLoading" [useSubmitBehavior]="true"
+                    text="Agregar unidades"></app-button>
+      </div>
+    </div>
+  </form>
+</div>

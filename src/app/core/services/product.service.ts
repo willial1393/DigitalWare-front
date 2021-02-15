@@ -36,7 +36,8 @@ export class ProductService {
       .toPromise() as Promise<Product>;
   }
 
-  addUnits(product: Product, units: number): boolean {
-    return true;
+  addUnits(data: { productId: number, units: number, unitPrice: number }): Promise<boolean> {
+    return this.http.post(this.url + '/units', data, {headers: this.headers})
+      .toPromise() as Promise<boolean>;
   }
 }

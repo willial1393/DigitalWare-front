@@ -17,6 +17,7 @@ export class FormProductStockComponent implements OnInit {
   productId: number;
   productName: string;
 
+
   constructor(private productService: ProductService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
@@ -61,4 +62,6 @@ export class FormProductStockComponent implements OnInit {
     }
     this.isLoading = false;
   }
+
+
 }

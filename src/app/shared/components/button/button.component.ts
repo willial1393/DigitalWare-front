@@ -13,7 +13,7 @@ export class ButtonComponent {
   @Input() stylingMode: 'contained' | 'outlined' | 'text' = 'contained';
   @Input() type: 'default' | 'success' | 'danger' = 'default';
   @Input() width;
-  @Input() icon: TypeIcon;
+  @Input() icon: IconType;
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onClick = new EventEmitter<void>();
 
@@ -25,7 +25,7 @@ export class ButtonComponent {
   }
 }
 
-type TypeIcon = 'activefolder' |
+type IconType = 'activefolder' |
   'airplane' |
   'aligncenter' |
   'alignjustify' |

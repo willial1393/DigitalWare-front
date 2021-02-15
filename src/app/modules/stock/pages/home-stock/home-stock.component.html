@@ -1,4 +1,5 @@
-<app-button text="Crear producto" icon="plus" [isLoading]="false" (onClick)="addProduct()"></app-button>
+<app-button text="Crear producto" icon="plus" [isLoading]="false" (onClick)="createProduct()"></app-button>
+<app-button class="ml-2" text="Historial" icon="clock" [isLoading]="false" (onClick)="goToHistory()"></app-button>
 <br><br>
 <dx-data-grid #grid [dataSource]="dataSource" [remoteOperations]="true" [height]="600"
               [showBorders]="true" [hoverStateEnabled]="true"
@@ -7,7 +8,31 @@
   <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
   <dxo-selection mode="single"></dxo-selection>
 
-  <dxi-column dataField="id"></dxi-column>
-  <dxi-column dataField="name"></dxi-column>
-  <dxi-column dataField="description"></dxi-column>
+  <dxi-column dataField="productId" caption="ID"></dxi-column>
+  <dxi-column dataField="name" caption="Producto"></dxi-column>
+  <dxi-column dataField="unitPrice" caption="Precio por unidad"></dxi-column>
+  <dxi-column dataField="total" caption="Existencias"></dxi-column>
+  <dxi-column dataField="created" caption="Fecha ultimo movimiento" dataType="date"
+              format="MMM d, yyyy, hh:mm a"></dxi-column>
 </dx-data-grid>
+
+
+<dx-popup
+  [width]="400"
+  [height]="170"
+  [showTitle]="true"
+  title="¿Que deseas hacer?"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="popupVisible">
+  <div *dxTemplate="let data of 'content'">
+    <div class="row">
+      <div class="col-sm mb-2 text-center">
+        <app-button class="m-auto" icon="edit" text="Editar el producto" (onClick)="editProduct()"></app-button>
+      </div>
+      <div class="col-sm mb-2 text-center">
+        <app-button class="m-auto" icon="plus" text="agregar unidades del producto" (onClick)="addUnits()"></app-button>
+      </div>
+    </div>
+  </div>
+</dx-popup>
