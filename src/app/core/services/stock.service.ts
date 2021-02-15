@@ -8,15 +8,12 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class StockService {
   url = environment.endpoint + '/stock';
+  urlHistory = environment.endpoint + '/stock/history';
   private headers: HttpHeaders;
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders();
     this.headers = this.headers.set('Content-Type', 'application/json; charset=utf-8');
-  }
-
-  get(): Stock[] {
-    return [];
   }
 
   getById(id: number): Promise<Stock> {

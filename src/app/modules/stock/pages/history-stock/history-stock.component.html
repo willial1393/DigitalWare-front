@@ -1,1 +1,16 @@
-<p>history-stock works!</p>
+<app-button text="Volver" icon="arrowleft" (onClick)="goToStock()"></app-button>
+<br><br>
+<dx-data-grid #grid [dataSource]="dataSource" [remoteOperations]="true" [height]="600"
+              [showBorders]="true">
+  <dxo-scrolling mode="virtual"></dxo-scrolling>
+  <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+
+  <dxi-column dataField="product.name" caption="Producto"></dxi-column>
+  <dxi-column dataField="type" caption="IN/OUT"></dxi-column>
+  <dxi-column dataField="quantity" caption="Cantidad"></dxi-column>
+  <dxi-column dataField="unitPrice" caption="Precio unitario" format="$ #,##0.##"></dxi-column>
+  <dxi-column dataField="total" caption="Total" format="$ #,##0.##"></dxi-column>
+  <dxi-column dataField="totalQuantity" caption="Cantidad total"></dxi-column>
+  <dxi-column dataField="created" caption="Fecha" dataType="date"
+              format="MMM d, yyyy, hh:mm a"></dxi-column>
+</dx-data-grid>
