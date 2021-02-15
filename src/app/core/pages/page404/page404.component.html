@@ -2,8 +2,7 @@
   <h3 class="fixed-top w-100 text-center mx-3" *ngIf="isDev">previousUrl: {{previousUrl}}</h3>
   <ul class="list-group list-group-flush w-50">
     <li class="list-group-item">Página no encontrada</li>
-    <li class="list-group-item" style="cursor:pointer;"
-        [routerLink]="[routerName.DASHBOARD.ROOT, routerName.DASHBOARD.HOME]">> Inicio
+    <li class="list-group-item" style="cursor:pointer;" (click)="goToHome()">> Inicio
     </li>
   </ul>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="10 10 1920 1080">

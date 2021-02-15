@@ -11,38 +11,17 @@ import {Product} from '../../../../shared/models/product';
   styleUrls: ['./home-stock.component.css']
 })
 export class HomeStockComponent {
-  customersData: any;
-  shippersData: any;
   dataSource: any;
   url: string;
 
 
   constructor(private router: Router,
               private productService: ProductService) {
-    this.url = 'https://js.devexpress.com/Demos/Mvc/api/DataGridWebApi';
+    this.url = productService.url;
 
     this.dataSource = AspNetData.createStore({
-      key: 'OrderID',
-      loadUrl: this.url + '/Orders',
-      insertUrl: this.url + '/InsertOrder',
-      updateUrl: this.url + '/UpdateOrder',
-      deleteUrl: this.url + '/DeleteOrder',
-      onBeforeSend: (method, ajaxOptions) => {
-        ajaxOptions.xhrFields = {withCredentials: true};
-      }
-    });
-
-    this.customersData = AspNetData.createStore({
-      key: 'Value',
-      loadUrl: this.url + '/CustomersLookup',
-      onBeforeSend: (method, ajaxOptions) => {
-        ajaxOptions.xhrFields = {withCredentials: true};
-      }
-    });
-
-    this.shippersData = AspNetData.createStore({
-      key: 'Value',
-      loadUrl: this.url + '/ShippersLookup',
+      key: 'id',
+      loadUrl: this.url,
       onBeforeSend: (method, ajaxOptions) => {
         ajaxOptions.xhrFields = {withCredentials: true};
       }
@@ -50,17 +29,16 @@ export class HomeStockComponent {
   }
 
   onSelect(product: Product): void {
-    this.productService.notifyChangeProduct(product);
     this.router.navigate([
       RouteName.STOCK.ROOT,
-      RouteName.STOCK.EDIT_PRODUCT
-    ]);
+      RouteName.STOCK.PRODUCT
+    ], {queryParams: {id: product.id}});
   }
 
   addProduct(): void {
     this.router.navigate([
       RouteName.STOCK.ROOT,
-      RouteName.STOCK.ADD_PRODUCT
+      RouteName.STOCK.PRODUCT
     ]);
   }
 }

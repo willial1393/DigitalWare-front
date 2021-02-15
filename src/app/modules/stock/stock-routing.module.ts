@@ -6,8 +6,7 @@ import {FormProductStockComponent} from './pages/form-product-stock/form-product
 
 const routes: Routes = [
   {path: RouteName.STOCK.HOME, component: HomeStockComponent},
-  {path: RouteName.STOCK.ADD_PRODUCT, component: FormProductStockComponent},
-  {path: RouteName.STOCK.EDIT_PRODUCT, component: FormProductStockComponent},
+  {path: RouteName.STOCK.PRODUCT, component: FormProductStockComponent},
 ];
 
 @NgModule({

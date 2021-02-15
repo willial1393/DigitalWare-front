@@ -7,6 +7,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {Page404Component} from './core/pages/page404/page404.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {DxDrawerModule, DxListModule, DxToolbarModule} from 'devextreme-angular';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {DxDrawerModule, DxListModule, DxToolbarModule} from 'devextreme-angular'
     NgbModule,
     DxToolbarModule,
     DxDrawerModule,
-    DxListModule
+    DxListModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

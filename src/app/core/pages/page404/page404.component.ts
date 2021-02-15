@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RouteName} from '../../../shared/constants/route-name';
 import {environment} from '../../../../environments/environment';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-page404',
@@ -9,15 +10,17 @@ import {environment} from '../../../../environments/environment';
 })
 export class Page404Component implements OnInit {
 
-  routerName = RouteName;
   previousUrl: string;
   isDev = !environment.production;
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
     this.previousUrl = sessionStorage.getItem('previousUrl');
   }
 
+  goToHome(): void {
+    this.router.navigate([RouteName.DASHBOARD.HOME_ROOT]);
+  }
 }
