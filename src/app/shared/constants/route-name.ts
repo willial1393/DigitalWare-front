@@ -30,6 +30,8 @@ class RouteNameStock {
   ROOT = 'inventario';
   HOME = 'inicio';
   HOME_ROOT = this.ROOT + '/' + this.HOME;
+  ADD_PRODUCT = 'agregar-producto';
+  EDIT_PRODUCT = 'editar-producto';
 }
 
 export class RouteName {

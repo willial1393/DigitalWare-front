@@ -1,0 +1,37 @@
+<div class="container">
+  <form (submit)="save($event)">
+    <div class="card">
+      <div class="card-header">{{isEdit ? 'Editar' : 'Crear'}} producto</div>
+      <div class="card-body">
+        <div class="dx-fieldset">
+          <div class="dx-field">
+            <div class="dx-field-label">Nombre</div>
+            <div class="dx-field-value">
+              <dx-text-box [(value)]="product.Name">
+                <dx-validator>
+                  <dxi-validation-rule type="required" message="Nombre es requerido"></dxi-validation-rule>
+                  <dxi-validation-rule type="stringLength" [min]="4"
+                                       message="Debe ser mayor a 4 caracteres"></dxi-validation-rule>
+                  <dxi-validation-rule type="async" message="Nombre ya existe"
+                                       [validationCallback]="asyncValidationName"></dxi-validation-rule>
+                </dx-validator>
+              </dx-text-box>
+            </div>
+          </div>
+
+          <div class="dx-field">
+            <div class="dx-field-label">Descripción</div>
+            <div class="dx-field-value">
+              <dx-text-area height="100" [(value)]="product.Description">
+              </dx-text-area>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <app-button [isLoading]="isLoading" [useSubmitBehavior]="true"
+                    text="{{isEdit ? 'Guardar cambios' : 'Crear producto'}}"></app-button>
+      </div>
+    </div>
+  </form>
+</div>

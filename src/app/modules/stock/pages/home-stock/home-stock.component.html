@@ -1,11 +1,10 @@
-<app-button text="Ingresar productos" icon="plus" [isLoading]="false"></app-button>
+<app-button text="Ingresar productos" icon="plus" [isLoading]="false" (onClick)="addProduct()"></app-button>
 <br><br>
 <dx-data-grid #grid [dataSource]="dataSource" [remoteOperations]="true" [height]="600"
               [showBorders]="true" [hoverStateEnabled]="true"
               (onSelectionChanged)="onSelect(grid.instance.getSelectedRowsData()[0])">
   <dxo-filter-row [visible]="true"></dxo-filter-row>
   <dxo-header-filter [visible]="true"></dxo-header-filter>
-  <dxo-group-panel [visible]="true"></dxo-group-panel>
   <dxo-scrolling mode="virtual"></dxo-scrolling>
   <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
   <dxo-selection mode="single"></dxo-selection>

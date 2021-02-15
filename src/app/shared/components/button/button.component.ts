@@ -7,6 +7,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class ButtonComponent {
 
+  @Input() useSubmitBehavior: boolean;
   @Input() isLoading: boolean;
   @Input() text;
   @Input() stylingMode: 'contained' | 'outlined' | 'text' = 'contained';
